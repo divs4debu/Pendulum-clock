@@ -1,5 +1,6 @@
 #include <iostream>
 #include <GL/glut.h>
+#include "DrawPanel.cpp"
 
 using namespace std;
 class Color{
@@ -20,21 +21,21 @@ void call_back_display(){
     GLfloat color[] = {c.red, c.green, c.blue};
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     glClearColor(color[0], color[1], color[2], 1.0f);
-    glutPostRedisplay();
+    //glutPostRedisplay();
+    glRectf(-.01f, .75f, .01f, -.75f);
     glEnd();
     glutSwapBuffers();
 }
 
-void createWindow(size_t width, size_t height){
     glutInitWindowSize(width, height);
     glutInitWindowPosition(100, 100);
     glutCreateWindow("Pendulum Clock");
     glutDisplayFunc(call_back_display);
-}
+}*/
 int main(int argc, char** argv){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE);
-    createWindow(300,300);
+    DrawPanel panel(call_back_display);
     glutMainLoop();
     return 0;
 }
