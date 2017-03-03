@@ -13,14 +13,16 @@ public :
         blue = float(b/255.0000);
     }
 };
+
+
 void call_back_display(){
     Color c(0,121,107);
     GLfloat color[] = {c.red, c.green, c.blue};
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     glClearColor(color[0], color[1], color[2], 1.0f);
     glutPostRedisplay();
     glEnd();
-    glFlush();
+    glutSwapBuffers();
 }
 
 void createWindow(size_t width, size_t height){
@@ -31,7 +33,7 @@ void createWindow(size_t width, size_t height){
 }
 int main(int argc, char** argv){
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE);
+    glutInitDisplayMode(GLUT_DOUBLE);
     createWindow(300,300);
     glutMainLoop();
     return 0;
